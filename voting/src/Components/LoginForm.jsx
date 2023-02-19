@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import { Users } from "../user";
-export const LoginForm = () => {
+export const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,23 +19,15 @@ export const LoginForm = () => {
     const user = Users.find(
         (u) => u.email === email && u.password === password
       );
-        if(user){
-          
-            if(user.type==="admin"){
-                alert("Admin")
-                window.location.href="/admin"
-                
-            }else{
-                alert("User")
-                window.location.href="/user"
-            }
-        }else{
-            setError("invalid email or passowrd");
-            console.log(error);
-            alert("invalid Error")
-        }
-    console.log(`Email: ${email}, Password: ${password}`);
-  };
+      if (user) {
+        localStorage.setItem('userType', user.type);
+        props.onLogin(user.type)
+      } else {
+        alert('Invalid login credentials');
+      }
+    };
+       
+
 
   return (
     <div className="login-form-container">

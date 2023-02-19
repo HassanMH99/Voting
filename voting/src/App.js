@@ -1,20 +1,31 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import {AdminPage} from './Components/AdminPage'
 import {LoginForm} from './Components/LoginForm'
-import {UserPage} from './Components/UserPage'
-// import VotingPage from './Components/VotingPage'
+import {VotingPage} from './Components/VotingPage'
+import { Users } from './user';
+import { useState,useEffect } from 'react';
 function App() {
+  const [userType, setUserType] = useState(null);
+  useEffect(() => {
+    const storedUserType = localStorage.getItem('userType');
+    if (storedUserType) {
+      setUserType(storedUserType);
+    }
+  }, []);
+  const handleLogin = (type) => {
+    setUserType(type);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('userType');
+    setUserType('');
+  };
 
   return (
-    <Router>
-      <Switch>
-      <Route exact path="/" component={LoginForm} />
-      <Route path="/admin" component={AdminPage} />
-      <Route path="/user" component={UserPage} />
-      </Switch>
-  </Router>
+    <div className="App">
+      {userType === 'admin' && <AdminPage onLogout={handleLogout} />}
+      {userType === 'user' && <VotingPage onLogout={handleLogout} />}
+      {!userType && <LoginForm users={Users} onLogin={handleLogin} />}
+    </div>
   )
 }
 
