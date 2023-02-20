@@ -1,0 +1,47 @@
+.AdminPage {
+    padding: 2rem;
+    background-color: #f0f0f0;
+  }
+  
+  .AdminPage h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .AdminPage-users {
+    margin-top: 2rem;
+  }
+  
+  .AdminPage-users table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .AdminPage-users th,
+  .AdminPage-users td {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+  }
+  
+  .AdminPage-users th {
+    background-color: #ddd;
+  }
+  
+  .AdminPage-users td:first-child {
+    font-weight: bold;
+  }
+  
+  .AdminPage button {
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .AdminPage button:hover {
+    background-color: #0069d9;
+  }
+  

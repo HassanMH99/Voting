@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './VotingPage.css'
 export const VotingPage = ({ onLogout }) => {
   const [catsCount, setCatsCount] = useState(
     parseInt(localStorage.getItem('catsCount') || '0')

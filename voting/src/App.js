@@ -5,19 +5,23 @@ import {VotingPage} from './Components/VotingPage'
 import { Users } from './user';
 import { useState,useEffect } from 'react';
 function App() {
+  const parties=[
+    {id:1,name:"cats"},
+    {id:2,name:"dogs"},
+    {id:3,name:"cows"},
+    {id:4,name:"lions"},
+  ]
   const [userType, setUserType] = useState(null);
-  useEffect(() => {
-    const storedUserType = localStorage.getItem('userType');
-    if (storedUserType) {
-      setUserType(storedUserType);
-    }
-  }, []);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   const handleLogin = (type) => {
     setUserType(type);
+    setLoggedIn(true);
   };
   const handleLogout = () => {
     localStorage.removeItem('userType');
     setUserType('');
+    setLoggedIn(false);
   };
 
   return (
